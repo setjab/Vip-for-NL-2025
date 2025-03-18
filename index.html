@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="no">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fagdag - Verdensrommet</title>
+  <style>
+    body {
+      margin: 0;
+      background: black;
+      overflow: hidden;
+      font-family: sans-serif;
+    }
+    .stars {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      z-index: 1;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 3s infinite ease-in-out;
+    }
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
+    }
+    .sun {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 80px;
+      height: 80px;
+      background: radial-gradient(circle, yellow, orange);
+      border-radius: 50%;
+      z-index: 2;
+      transform: translate(-50%, -50%);
+    }
+    .planet {
+      position: absolute;
+      border-radius: 50%;
+      z-index: 2;
+      animation: orbit 10s linear infinite;
+    }
+    .planet::before {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: conic-gradient(red, orange, yellow, green, blue, indigo, violet, red);
+      border-radius: 50%;
+    }
+    .orbit {
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      top: 50%;
+      left: 50%;
+      margin-left: -100px;
+      margin-top: -100px;
+      animation: rotateOrbit 20s linear infinite;
+    }
+    @keyframes rotateOrbit {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .welcome-text {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 80px;
+      font-weight: bold;
+      color: white;
+      background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: textFlyIn 5s ease-out forwards;
+      z-index: 3;
+    }
+    @keyframes textFlyIn {
+      to {
+        top: 40%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="stars"></div>
+  <div class="sun"></div>
+  <div class="orbit">
+    <div class="planet" style="top: 0; left: 100%; transform: translateX(-90%);"></div>
+  </div>
+  <div class="welcome-text"> Virksomhetsplan for Nav land 2025
+  </div>
+
+  <script>
+    const starsContainer = document.querySelector('.stars');
+    for (let i = 0; i < 200; i++) {
+      const star = document.createElement('div');
+      star.className = 'star';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      starsContainer.appendChild(star);
+    }
+  </script>
+</body>
+</html>
